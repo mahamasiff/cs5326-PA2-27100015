@@ -9,10 +9,10 @@ import random
 import time
 from typing import Any, Iterable
 
-import torch
-
 
 def set_seed(seed: int) -> None:
+    import torch
+
     random.seed(seed)
     try:
         import numpy as np
@@ -89,7 +89,7 @@ class MetricsLogger:
 
     def log(self, split: str, step: int, **values) -> None:
         row = {"split": split, "step": step, "elapsed_s": round(time.time() - self.start, 1)}
-        row.update({k: (float(v) if isinstance(v, (int, float, torch.Tensor)) else v) for k, v in values.items()})
+        row.update({k: (float(v) if isinstance(v, (int, float)) or hasattr(v, "item") else v) for k, v in values.items()})
         append_jsonl(self.path, row)
         print(json.dumps(row), flush=True)
 
@@ -118,6 +118,8 @@ def constant_lambda(total_steps: int, warmup_steps: int):
 
 
 def build_scheduler(optimizer, kind: str, total_steps: int, warmup_steps: int):
+    import torch
+
     fns = {"cosine": warmup_cosine_lambda, "constant": constant_lambda}
     if kind not in fns:
         raise ValueError(f"unknown scheduler {kind!r}; expected one of {sorted(fns)}")
@@ -126,6 +128,8 @@ def build_scheduler(optimizer, kind: str, total_steps: int, warmup_steps: int):
 
 def build_optimizer(model, name: str, lr: float, weight_decay: float):
     """AdamW or RMSprop; weight decay skips biases and norm weights."""
+
+    import torch
 
     decay, no_decay = [], []
     for n, p in model.named_parameters():
@@ -153,6 +157,7 @@ def save_checkpoint(model, tokenizer, path: str, extra: dict | None = None) -> N
 
 
 def describe_environment() -> dict:
+    import torch
     import transformers
 
     info = {

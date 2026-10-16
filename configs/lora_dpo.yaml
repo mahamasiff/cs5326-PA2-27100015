@@ -1,0 +1,24 @@
+# Task 5: TRL DPOTrainer + PEFT LoRA persona tuning (choices justified in the report).
+model_name: HuggingFaceTB/SmolLM2-360M-Instruct
+data_path: data/persona_lora/ramsay_style_preferences.json   # 220 rows
+output_dir: outputs/lora_dpo
+val_fraction: 0.1        # 22 held-out pairs to watch for overfitting
+seed: 42
+
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+
+beta: 0.1
+learning_rate: 5.0e-5
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+num_train_epochs: 3
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 2   # effective batch 8
+per_device_eval_batch_size: 8
+max_length: 512
+fp16: true
+logging_steps: 2
+eval_steps: 10
