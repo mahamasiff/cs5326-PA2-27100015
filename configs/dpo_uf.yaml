@@ -1,0 +1,29 @@
+# Guide configuration from manual sections 10.3-10.4 (UltraFeedback track).
+sft_checkpoint: outputs/sft/best    # policy init AND frozen reference
+train_path: data/processed/uf_train.jsonl   # 15,000 single-turn pairs
+val_path: data/processed/uf_val.jsonl       # 1,000 pairs
+output_dir: outputs/dpo_uf
+
+beta: 0.1
+max_length: 512
+max_prompt_length: 256
+per_device_batch_size: 1
+gradient_accumulation_steps: 32   # effective batch 32
+learning_rate: 1.0e-6
+scheduler: constant               # no decay by default
+warmup_steps: 0
+optimizer: rmsprop
+weight_decay: 0.0
+max_grad_norm: 1.0
+epochs: 1
+fp16: true
+
+policy_device: cuda:0             # fp32 trainable policy
+reference_device: cuda:1          # frozen fp16 reference
+reference_dtype: float16
+
+eval_every: 50                    # optimizer steps (~469 total)
+eval_at_start: true
+eval_batch_size: 4
+log_every: 5
+seed: 42
