@@ -1,2 +1,16 @@
 __pycache__/
 *.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+
+# Duplicate of docs/assignment_manual.pdf
+PA2.pdf
+
+# Large training artifacts live in Kaggle outputs, not git
+outputs/**/checkpoints/
+outputs/**/best/
+outputs/**/final/
+*.safetensors
+*.bin
+*.zip
