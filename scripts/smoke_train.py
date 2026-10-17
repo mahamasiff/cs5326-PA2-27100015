@@ -68,7 +68,13 @@ def main():
         metrics = read_jsonl(os.path.join(work, run, "metrics.jsonl"))
         assert any(m["split"] == "val" for m in metrics), f"no validation metrics for {run}"
     dpo_val = [m for m in read_jsonl(os.path.join(work, "dpo", "metrics.jsonl")) if m["split"] == "val"]
-    assert dpo_val[0]["reward_accuracy"] == 0.0, "policy == reference at step 0, so strict accuracy must be 0"
+    # policy == reference at step 0, so implicit rewards are ~0. They are exactly 0 on CPU; on GPU the fp32
+    # policy (fp16 autocast) and fp16 reference differ by rounding, so only check they are near zero.
+    step0 = dpo_val[0]
+    print(f"step-0 rewards: chosen={step0['reward_chosen']:.2e} rejected={step0['reward_rejected']:.2e} "
+          f"accuracy={step0['reward_accuracy']:.2f}")
+    assert abs(step0["reward_chosen"]) < 0.05 and abs(step0["reward_rejected"]) < 0.05, \
+        "policy and reference should agree at step 0"
     print("SMOKE TEST PASSED")
 
 
