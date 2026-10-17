@@ -51,20 +51,18 @@ SFT and both from-scratch DPO runs use only Transformers (model/tokenizer loadin
 
 ## Running on Kaggle
 
-Use **GPU T4 x2** with Internet on. Run the notebooks in order; after each finishes, use **Save Version**
-(for long training runs use *Save & Run All (Commit)*) and attach its output to the next notebook via
-**Add Input**. Every notebook clones this repo into `/kaggle/working/cs5326-PA2-27100015`, writes results
-under `outputs/`, and skips finished work when re-run.
+Following manual §5.4: one training notebook, a separate generation notebook that takes the training
+outputs as an input dataset, and a separate evaluation notebook that takes the generation outputs as an
+input dataset. Use **GPU T4 x2** with Internet on (the evaluation notebook needs no GPU). Start each with
+**Save Version → Save & Run All (Commit)**, then attach its saved output to the next notebook via
+**Add Input**. Every notebook clones this repo into `/kaggle/working/cs5326-PA2-27100015` and writes
+results under `outputs/`.
 
-| Notebook | Needs as input | Produces | Approx. time |
+| Notebook | Tasks | Input | Produces |
 |---|---|---|---|
-| `01_setup_baseline` | — | `outputs/generations/alpaca_base.json` | 15 min |
-| `02_sft` | — | `outputs/sft/{best,final}`, `metrics.jsonl`, plots | 1.5 h |
-| `03_dpo_hh` | 02 | `outputs/dpo_hh/{best,final}` | 2–2.5 h |
-| `04_dpo_uf` | 02 | `outputs/dpo_uf/{best,final}` | 2–2.5 h |
-| `05_lora_persona` | — | `outputs/lora_dpo/final` (adapter) | 10–20 min |
-| `06_generate` | 02, 03, 04, 05 | `outputs/generations/*.json`, `outputs/eval/*_pairs.jsonl` | 30–45 min |
-| `07_judge` (utility benchmark notebook) | 06 | `outputs/eval/*_judged.jsonl`, `*_summary.json`, `results.md` | 20–30 min |
+| `01_training` | 1, 3, 4 (both DPO runs), 5 | — | `outputs/{sft,dpo_hh,dpo_uf,lora_dpo}/`, `outputs/plots/`, `data/manifests/` |
+| `02_generation` | 2, 6 | saved `01_training` | `outputs/generations/*.json`, `outputs/eval/*_pairs.jsonl` |
+| `03_evaluation` (utility benchmark) | 7 | saved `02_generation` | `outputs/eval/*_judged.jsonl`, `*_summary.json`, `results.md` |
 
 Equivalent commands from the repository root:
 
