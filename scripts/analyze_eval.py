@@ -101,17 +101,23 @@ def main():
         refusals[cat]["dpo_hh"] += bool(REFUSAL.search(gens["hh_dpo_hh"][pid]["output"][:300]))
     out["hh_refusal_phrase_counts"] = dict(sorted(refusals.items()))
 
-    # Judge consistency on prompts that appear more than once in the HH set (greedy outputs are identical).
+    # Judge consistency on prompts that appear more than once in the HH set. Batched fp16 generation can
+    # give slightly different outputs for repeats, so only groups where both models' answers are identical
+    # across all repeats are used: the judge then saw the same pair (possibly in a different A/B order).
     judged = {r["pair_id"]: r for r in read_jsonl(os.path.join(args.eval_dir, "dpo_hh_vs_sft_judged.jsonl"))}
-    by_prompt = collections.defaultdict(set)
-    counts = collections.Counter(r["instruction"] for r in gens["hh_sft"].values())
-    for pid, r in judged.items():
-        by_prompt[gens["hh_sft"][pid]["instruction"]].add(r["verdicts"]["winner"]["model"])
-    repeated = [k for k, c in counts.items() if c > 1]
+    groups = collections.defaultdict(list)
+    for pid, r in gens["hh_sft"].items():
+        groups[r["instruction"]].append(pid)
+    repeated = [ids for ids in groups.values() if len(ids) > 1]
+    identical = [ids for ids in repeated
+                 if len({gens["hh_sft"][i]["output"] for i in ids}) == 1
+                 and len({gens["hh_dpo_hh"][i]["output"] for i in ids}) == 1]
     out["hh_judge_consistency"] = {
-        "unique_prompts": len(counts),
+        "unique_prompts": len(groups),
         "repeated_prompts": len(repeated),
-        "repeated_with_inconsistent_verdicts": sum(len(by_prompt[k]) > 1 for k in repeated),
+        "repeated_with_identical_outputs": len(identical),
+        "identical_with_inconsistent_verdicts": sum(
+            len({judged[i]["verdicts"]["winner"]["model"] for i in ids}) > 1 for ids in identical),
     }
 
     write_json(args.output, out)

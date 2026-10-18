@@ -255,6 +255,7 @@
   "hh_judge_consistency": {
     "unique_prompts": 185,
     "repeated_prompts": 71,
-    "repeated_with_inconsistent_verdicts": 22
+    "repeated_with_identical_outputs": 52,
+    "identical_with_inconsistent_verdicts": 16
   }
 }
