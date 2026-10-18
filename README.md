@@ -64,6 +64,9 @@ results under `outputs/`.
 | `02_generation` | 2, 6 | saved `01_training` | `outputs/generations/*.json`, `outputs/eval/*_pairs.jsonl` |
 | `03_evaluation` (utility benchmark) | 7 | saved `02_generation` | `outputs/eval/*_judged.jsonl`, `*_summary.json`, `results.md` |
 
+The executed copies of all three notebooks, with every cell output from the reported runs, are in
+`notebooks/executed/`.
+
 Equivalent commands from the repository root:
 
 ```bash
