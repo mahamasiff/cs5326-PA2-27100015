@@ -17,3 +17,4 @@ outputs/**/final/
 
 # Raw downloads from Kaggle (zips, tokenizer copies)
 kaggle_outputs/
+report/*.pdf
