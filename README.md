@@ -10,7 +10,7 @@ is `docs/assignment_manual.pdf`.
 
 | Manual task | Implementation |
 |---|---|
-| Adapter contract (§4.1) | `submission_adapter.py` → `src/pa2/batching.py`, `src/pa2/losses.py` |
+| Adapter contract (section 4.1) | `submission_adapter.py` → `src/pa2/batching.py`, `src/pa2/losses.py` |
 | Task 1: setup | `notebooks/01_setup_baseline.ipynb` |
 | Task 2: baseline generation | `scripts/make_alpaca_eval_subset.py`, `scripts/generate.py`, notebook 01 |
 | Task 3: SFT | `src/pa2/sft.py`, `scripts/train_sft.py`, `configs/sft.yaml`, notebook 02 |
@@ -51,7 +51,7 @@ SFT and both from-scratch DPO runs use only Transformers (model/tokenizer loadin
 
 ## Running on Kaggle
 
-Following manual §5.4: one training notebook, a separate generation notebook that takes the training
+Following section 5.4 of the manual: one training notebook, a separate generation notebook that takes the training
 outputs as an input dataset, and a separate evaluation notebook that takes the generation outputs as an
 input dataset. Use **GPU T4 x2** with Internet on (the evaluation notebook needs no GPU). Start each with
 **Save Version → Save & Run All (Commit)**, then attach its saved output to the next notebook via
