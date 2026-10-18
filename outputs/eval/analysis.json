@@ -1,0 +1,260 @@
+{
+  "generation_stats": {
+    "alpaca_base": {
+      "n": 300,
+      "looping": 184,
+      "hit_max_new_tokens": 201,
+      "mean_chars": 1637.3
+    },
+    "alpaca_sft": {
+      "n": 300,
+      "looping": 79,
+      "hit_max_new_tokens": 49,
+      "mean_chars": 875.4
+    },
+    "alpaca_dpo_uf": {
+      "n": 300,
+      "looping": 101,
+      "hit_max_new_tokens": 78,
+      "mean_chars": 1306.7
+    },
+    "hh_sft": {
+      "n": 300,
+      "looping": 88,
+      "hit_max_new_tokens": 44,
+      "mean_chars": 992.5
+    },
+    "hh_dpo_hh": {
+      "n": 300,
+      "looping": 70,
+      "hit_max_new_tokens": 23,
+      "mean_chars": 755.7
+    },
+    "persona_base": {
+      "n": 40,
+      "looping": 1,
+      "hit_max_new_tokens": 17,
+      "mean_chars": 714.7
+    },
+    "persona_lora": {
+      "n": 40,
+      "looping": 18,
+      "hit_max_new_tokens": 30,
+      "mean_chars": 885.3
+    }
+  },
+  "comparisons": {
+    "dpo_uf_vs_sft": {
+      "criterion": "winner",
+      "judge_position_counts": {
+        "A": 154,
+        "B": 103,
+        "tie": 43
+      },
+      "by_loop_status": {
+        "candidate_loops/baseline_loops": {
+          "n": 55,
+          "win": 34,
+          "tie": 12,
+          "loss": 9,
+          "win_rate_with_ties": 0.727
+        },
+        "candidate_loops/baseline_ok": {
+          "n": 46,
+          "win": 5,
+          "tie": 0,
+          "loss": 41,
+          "win_rate_with_ties": 0.109
+        },
+        "candidate_ok/baseline_loops": {
+          "n": 24,
+          "win": 17,
+          "tie": 1,
+          "loss": 6,
+          "win_rate_with_ties": 0.729
+        },
+        "candidate_ok/baseline_ok": {
+          "n": 175,
+          "win": 66,
+          "tie": 30,
+          "loss": 79,
+          "win_rate_with_ties": 0.463
+        }
+      },
+      "by_relative_length": {
+        "candidate_longer": {
+          "n": 236,
+          "win": 91,
+          "tie": 23,
+          "loss": 122,
+          "win_rate_with_ties": 0.434
+        },
+        "candidate_not_longer": {
+          "n": 64,
+          "win": 31,
+          "tie": 20,
+          "loss": 13,
+          "win_rate_with_ties": 0.641
+        }
+      }
+    },
+    "dpo_hh_vs_sft": {
+      "criterion": "winner",
+      "judge_position_counts": {
+        "A": 128,
+        "B": 115,
+        "tie": 57
+      },
+      "by_loop_status": {
+        "candidate_loops/baseline_loops": {
+          "n": 40,
+          "win": 16,
+          "tie": 15,
+          "loss": 9,
+          "win_rate_with_ties": 0.588
+        },
+        "candidate_loops/baseline_ok": {
+          "n": 30,
+          "win": 3,
+          "tie": 6,
+          "loss": 21,
+          "win_rate_with_ties": 0.2
+        },
+        "candidate_ok/baseline_loops": {
+          "n": 48,
+          "win": 43,
+          "tie": 0,
+          "loss": 5,
+          "win_rate_with_ties": 0.896
+        },
+        "candidate_ok/baseline_ok": {
+          "n": 182,
+          "win": 77,
+          "tie": 36,
+          "loss": 69,
+          "win_rate_with_ties": 0.522
+        }
+      },
+      "by_relative_length": {
+        "candidate_longer": {
+          "n": 88,
+          "win": 28,
+          "tie": 19,
+          "loss": 41,
+          "win_rate_with_ties": 0.426
+        },
+        "candidate_not_longer": {
+          "n": 212,
+          "win": 111,
+          "tie": 38,
+          "loss": 63,
+          "win_rate_with_ties": 0.613
+        }
+      }
+    },
+    "lora_vs_base": {
+      "criterion": "quality",
+      "judge_position_counts": {
+        "A": 16,
+        "B": 22,
+        "tie": 2
+      },
+      "by_loop_status": {
+        "candidate_loops/baseline_ok": {
+          "n": 18,
+          "win": 2,
+          "tie": 1,
+          "loss": 15,
+          "win_rate_with_ties": 0.139
+        },
+        "candidate_ok/baseline_loops": {
+          "n": 1,
+          "win": 1,
+          "tie": 0,
+          "loss": 0,
+          "win_rate_with_ties": 1.0
+        },
+        "candidate_ok/baseline_ok": {
+          "n": 21,
+          "win": 9,
+          "tie": 1,
+          "loss": 11,
+          "win_rate_with_ties": 0.452
+        }
+      },
+      "by_relative_length": {
+        "candidate_longer": {
+          "n": 21,
+          "win": 5,
+          "tie": 2,
+          "loss": 14,
+          "win_rate_with_ties": 0.286
+        },
+        "candidate_not_longer": {
+          "n": 19,
+          "win": 7,
+          "tie": 0,
+          "loss": 12,
+          "win_rate_with_ties": 0.368
+        }
+      }
+    }
+  },
+  "hh_refusal_phrase_counts": {
+    "benign_helpfulness": {
+      "sft": 0,
+      "dpo_hh": 0,
+      "n": 30
+    },
+    "calibration_and_uncertainty": {
+      "sft": 24,
+      "dpo_hh": 24,
+      "n": 30
+    },
+    "cyber_abuse": {
+      "sft": 18,
+      "dpo_hh": 10,
+      "n": 30
+    },
+    "harmful_instructions": {
+      "sft": 3,
+      "dpo_hh": 4,
+      "n": 30
+    },
+    "hate_or_harassment": {
+      "sft": 5,
+      "dpo_hh": 5,
+      "n": 30
+    },
+    "legal_financial_safety": {
+      "sft": 7,
+      "dpo_hh": 7,
+      "n": 30
+    },
+    "medical_safety": {
+      "sft": 12,
+      "dpo_hh": 16,
+      "n": 30
+    },
+    "privacy_and_doxxing": {
+      "sft": 9,
+      "dpo_hh": 13,
+      "n": 30
+    },
+    "safe_transformation": {
+      "sft": 8,
+      "dpo_hh": 6,
+      "n": 30
+    },
+    "self_harm_support": {
+      "sft": 12,
+      "dpo_hh": 6,
+      "n": 30
+    }
+  },
+  "hh_judge_consistency": {
+    "unique_prompts": 185,
+    "repeated_prompts": 71,
+    "repeated_with_inconsistent_verdicts": 22
+  }
+}

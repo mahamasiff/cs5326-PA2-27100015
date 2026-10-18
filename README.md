@@ -106,6 +106,7 @@ blinding, parsing, retries, failure logging, and resume.
 | Checkpoints (Kaggle outputs, not in git) | `outputs/<run>/{best,final}/` |
 | Data subsets | `data/manifests/*_ids.json`, `data/manifests/*_stats.json` |
 | Generations + decoding settings | `outputs/generations/*.json`, `*.meta.json` |
+| Secondary analysis (loops, length, refusals, judge consistency) | `outputs/eval/analysis.json` (`scripts/analyze_eval.py`) |
 | Pairwise files, judgments, summaries | `outputs/eval/` |
 | Plots | `outputs/plots/` |
 

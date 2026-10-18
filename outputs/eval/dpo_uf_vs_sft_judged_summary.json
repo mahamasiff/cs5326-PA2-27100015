@@ -1,0 +1,38 @@
+{
+  "mode": "general",
+  "n_pairs": 300,
+  "run_stats": {
+    "requests": 8,
+    "judged_pairs": 40
+  },
+  "candidate": "dpo_uf",
+  "baseline": "sft",
+  "judge_model": "google/gemini-3.6-flash",
+  "winner": {
+    "wins": 122,
+    "losses": 135,
+    "ties": 43,
+    "unknown": 0,
+    "failures": 0,
+    "win_rate_with_ties": 0.47833333333333333,
+    "win_rate_without_ties": 0.47470817120622566,
+    "unknown_rate": 0.0,
+    "failure_rate": 0.0,
+    "judge_position_counts": {
+      "A": 154,
+      "B": 103,
+      "tie": 43
+    },
+    "by_category": {
+      "all": {
+        "wins": 122,
+        "losses": 135,
+        "ties": 43,
+        "unknown": 0,
+        "failures": 0,
+        "win_rate_with_ties": 0.47833333333333333,
+        "win_rate_without_ties": 0.47470817120622566
+      }
+    }
+  }
+}
