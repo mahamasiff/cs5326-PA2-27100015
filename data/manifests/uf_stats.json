@@ -1,0 +1,24 @@
+{
+  "source": "HuggingFaceH4/ultrafeedback_binarized",
+  "seed": 42,
+  "train": {
+    "hf_split": "train_prefs",
+    "available": 61135,
+    "requested": 15000,
+    "tied_or_inverted_scores": 2007,
+    "identical_responses": 91,
+    "empty": 18,
+    "scanned": 17116,
+    "kept": 15000
+  },
+  "val": {
+    "hf_split": "test_prefs",
+    "available": 2000,
+    "requested": 1000,
+    "tied_or_inverted_scores": 169,
+    "identical_responses": 6,
+    "empty": 3,
+    "scanned": 1178,
+    "kept": 1000
+  }
+}

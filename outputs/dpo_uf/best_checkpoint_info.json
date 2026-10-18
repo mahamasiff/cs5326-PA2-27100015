@@ -1,0 +1,11 @@
+{
+  "step": 450,
+  "reference_checkpoint": "outputs/sft/best",
+  "beta": 0.1,
+  "loss": 0.5403093901276589,
+  "pairs": 1000,
+  "reward_chosen": -0.13710128108412029,
+  "reward_rejected": -0.9040198886916041,
+  "reward_margin": 0.7669186076521873,
+  "reward_accuracy": 0.711
+}

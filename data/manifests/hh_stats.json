@@ -1,0 +1,23 @@
+{
+  "source": "Anthropic/hh-rlhf",
+  "seed": 42,
+  "train": {
+    "hf_split": "train",
+    "available": 160800,
+    "requested": 15000,
+    "multi_turn": 34094,
+    "empty": 13,
+    "identical_responses": 9,
+    "scanned": 49116,
+    "kept": 15000
+  },
+  "val": {
+    "hf_split": "test",
+    "available": 8552,
+    "requested": 1000,
+    "multi_turn": 2365,
+    "empty": 5,
+    "scanned": 3370,
+    "kept": 1000
+  }
+}

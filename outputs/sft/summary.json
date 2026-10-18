@@ -1,0 +1,5 @@
+{
+  "optimizer_steps": 938,
+  "best_val_loss": 1.390083292960893,
+  "skipped_fp16_steps": 2
+}

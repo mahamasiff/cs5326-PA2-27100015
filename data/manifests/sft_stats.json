@@ -1,0 +1,19 @@
+{
+  "source": "HuggingFaceH4/ultrachat_200k",
+  "seed": 42,
+  "train": {
+    "hf_split": "train_sft",
+    "available": 207865,
+    "requested": 30000,
+    "empty": 1,
+    "scanned": 30001,
+    "kept": 30000
+  },
+  "val": {
+    "hf_split": "test_sft",
+    "available": 23110,
+    "requested": 1000,
+    "scanned": 1000,
+    "kept": 1000
+  }
+}

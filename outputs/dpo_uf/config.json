@@ -1,0 +1,45 @@
+{
+  "config": {
+    "max_length": 512,
+    "max_prompt_length": 256,
+    "per_device_batch_size": 1,
+    "gradient_accumulation_steps": 32,
+    "learning_rate": 1e-06,
+    "scheduler": "constant",
+    "warmup_steps": 0,
+    "beta": 0.1,
+    "optimizer": "rmsprop",
+    "weight_decay": 0.0,
+    "max_grad_norm": 1.0,
+    "epochs": 1,
+    "fp16": true,
+    "eval_every": 50,
+    "eval_at_start": true,
+    "eval_batch_size": 4,
+    "log_every": 5,
+    "seed": 42,
+    "gradient_checkpointing": false,
+    "policy_device": "cuda:0",
+    "reference_device": "cuda:1",
+    "reference_dtype": "float16",
+    "max_train_examples": null,
+    "max_val_examples": null,
+    "max_steps": null,
+    "num_workers": 2,
+    "overwrite": false,
+    "sft_checkpoint": "outputs/sft/best",
+    "train_path": "data/processed/uf_train.jsonl",
+    "val_path": "data/processed/uf_val.jsonl",
+    "output_dir": "outputs/dpo_uf"
+  },
+  "environment": {
+    "torch": "2.11.0+cu128",
+    "transformers": "4.57.6",
+    "cuda_available": true,
+    "gpus": [
+      "Tesla T4",
+      "Tesla T4"
+    ],
+    "datasets": "4.8.5"
+  }
+}
